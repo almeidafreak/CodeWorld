@@ -33,7 +33,7 @@
       
       <% if current_user.try(:admin?) %>
         <h4>Your session is an Admin Session</h4>
-        <li><%= link_to 'Orders', '/orders' %></li> 
+        <li><%= link_to 'Orders', '/orders' %></li>
       <% end %>
 
     </ul>
@@ -42,4 +42,8 @@
   <body>
     <%= yield %>
   </body>
+  
+  <footer>
+    <%= link_to 'New Category', new_category_path, :class =>"button", :role=>"button" %>
+  </footer>
 </html>

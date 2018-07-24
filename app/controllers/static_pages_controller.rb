@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
 
   def home
+    @categories = Category.all
   end
 
   def contact
@@ -41,6 +42,11 @@ class StaticPagesController < ApplicationController
   def thanks
     @order = Order.find(params[:id])
     @order.update_attribute(:status, "Paid with PayPal")
+  end
+  
+  def category
+    catName = params[:title]
+    @items = Item.where("category like ? ", catName)
   end
 
 end

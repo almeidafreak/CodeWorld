@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories
   get 'orderitems/index'
   get 'orderitems/show'
   get 'orderitems/new'
@@ -51,6 +52,9 @@ Rails.application.routes.draw do
   
   # Paypal route
   get '/thanks/:id' => 'static_pages#thanks'
+  
+  # Category routes
+  get 'category/:title', to: 'static_pages#category'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
