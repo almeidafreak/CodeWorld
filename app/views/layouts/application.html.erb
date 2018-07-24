@@ -11,6 +11,7 @@
   
   <header class="headSec">
     <ul>
+      <li class="logo"><%= link_to "CodeWorld", '/home' %></li>
       
       <% if user_signed_in? %>
         <li><a href="#">Hi <%= current_user.email %></a></li>
@@ -37,14 +38,17 @@
       <% end %>
 
     </ul>
-    <%=render 'layouts/search'%>
+    
   </header>
 
   <body>
+    <%=render 'layouts/search'%>
     <%= yield %>
   </body>
   
-  <footer>
+  <footer class="foot">
+    <p>Social Media</p>
+    <p>Copyright © 2018 CodeWorld Inc. All rights reserved.</p>
     <%= link_to 'New Category', new_category_path, :class =>"button", :role=>"button" %>
   </footer>
 </html>

@@ -6,7 +6,7 @@ class UserController < ApplicationController
         
         # The line below used to be like the logged out
         # redirect_to :controller => :items
-        redirect_to root_path
+        redirect_to edit_user_registration_path
     end
     
     def logout

@@ -7,22 +7,37 @@
 <% end %>
 
 <table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Lecturer</th>
-      <th>Price</th>
-      <th>Image url</th>
-      <th>Category</th>
-      <th>Skill level</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
   <tbody>
     <% @items.each do |item| %>
-      <tr>
+      <div class="entry">
+        <%= image_tag(item.image_url) %>
+        <h3><%= item.title %></h3>
+        <p><%= sanitize(item.description) %></p>
+        <p class="tag">Lecturer: </p><%= item.lecturer %>
+        <p class="tag">Price: </p>
+        <span class="price"><%= number_to_currency(item.price, :unit => "€ ") %></span>
+        <a href="/cart/<%= item.id %>" class= "button"> Add to Cart</a>
+        <span class="button"><%= link_to 'Show', item %></span>
+        <% unless user_signed_in? %>
+          <span class="button"><%= link_to 'Edit', edit_item_path(item) %></span>
+          <span class="button"><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+        <% end %>
+      </div>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% unless user_signed_in? %>
+  <%= link_to 'New Item', new_item_path %>
+<% end %>
+
+
+
+
+<% if false %>
+<tr>
         <td><%= item.title %></td>
         <td><%= item.description %></td>
         <td><%= item.lecturer %></td>
@@ -37,12 +52,6 @@
           <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<% unless user_signed_in? %>
-  <%= link_to 'New Item', new_item_path %>
+      
+      
 <% end %>
