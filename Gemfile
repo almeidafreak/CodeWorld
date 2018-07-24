@@ -5,6 +5,8 @@ ruby '2.4.1'
 
 # devise gem
 gem 'devise', '4.4.3'
+# stripe gem
+gem 'stripe'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'

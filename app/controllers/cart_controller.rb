@@ -28,6 +28,8 @@ class CartController < ApplicationController
   end 
   
   def index
+    @orders = Order.all
+    @orderitems = Orderitem.where(order_id: Order.last)
     # passes a cart to display
     if session[:cart] then
       @cart = session[:cart]

@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   get 'cart/index'
   resources :items
   
+  # Stripe resources
+  resources :charges
+  
   root 'static_pages#home'
 
   # Static pages routes
@@ -46,6 +49,8 @@ Rails.application.routes.draw do
   get '/orders' => 'order#show'
   get '/paid' => 'static_pages#paid'
   
+  # Paypal route
+  get '/thanks/:id' => 'static_pages#thanks'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

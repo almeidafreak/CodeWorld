@@ -42,8 +42,14 @@
         <tr>
             Grand Total: <%= number_to_currency(total, :unit => "€") %>
         </tr>
-        <a href="/cart/clear" class="button">Clear Cart</a>
-        <%# Continue Shopping button %>
-        <a href="/checkout" class="button">Checkout</a>
+        
+        <% if @cart.empty? %>
+            <h4>Your cart is currently empty</h4>
+            <p class="boton"><%= link_to "Add some Products", '/items' %></p>
+        <% else %>
+            <a href="/cart/clear" class="button">Clear Cart</a>
+            <p class="boton"><%= link_to "Continue shopping", '/items' %></p>
+            <a href="/checkout" class="button">Checkout</a>
+        <% end %>
     </table>
 </div>

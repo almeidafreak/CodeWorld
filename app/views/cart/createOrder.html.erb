@@ -1,3 +1,4 @@
+<p id="notice"><%= notice %></p>
 <div id="itemsContainer">
     <h5>Thank You<br>
 You have just placed an order <%=@orderReg %></h5>
@@ -44,7 +45,46 @@ You have just placed an order <%=@orderReg %></h5>
        
       </tr>
       <tr>
-          <td><h2>  <a href="/paid" class=”button”>Pay Now</a></h2></td>
+          <td>
+            <form action="/paid">
+                Voucher number: <br /><input type="text" name="VoucherNumber" value="Pay with Voucher" onfocus="this.value=''"><br>
+                <input type="submit" value="Submit">
+            </form>
+          </td>
       </tr>
-
+    <% @overall = @total %>
+    <%# @orderNum = Order.id %>
 </table>
+
+<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="business" value="jagonzacas@hotmail.com">
+<input type="hidden" name="item_name" value="Code World Order Number <%= @orderNum %>">
+<input type="hidden" name="currency_code" value="EUR">
+<input type="hidden" name="amount" value="<%= @overall %>">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+<input type="hidden" name="return" value="https://a36a883947b94457b231ac5604f5b6f9.vfs.cloud9.us-east-2.amazonaws.com/" >
+</form>
+
+<%= form_tag charges_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+        
+        <%# The line below needs to be the total price of the cart %>
+        
+      <span>Amount: $5.00</span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="A month's subscription"
+          data-amount="500"
+          data-locale="auto">
+  </script>
+<% end %>

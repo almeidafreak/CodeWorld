@@ -38,5 +38,9 @@ class StaticPagesController < ApplicationController
     #"Paid by User:#{current_user.id} #{current_user.name} #{current_user.surname}")
   end
 
+  def thanks
+    @order = Order.find(params[:id])
+    @order.update_attribute(:status, "Paid with PayPal")
+  end
 
 end
