@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Items</h1>
+
+<% unless user_signed_in? %>
+  <h3>Feel free to add some more products!</h3>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Lecturer</th>
+      <th>Price</th>
+      <th>Image url</th>
+      <th>Category</th>
+      <th>Skill level</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.title %></td>
+        <td><%= item.description %></td>
+        <td><%= item.lecturer %></td>
+        <td><%= item.price %></td>
+        <td><%= item.image_url %></td>
+        <td><%= item.category %></td>
+        <td><%= item.skill_level %></td>
+        <td><a href="/cart/<%= item.id %>" class= "button"> Add to Cart</a></td>
+        <td><%= link_to 'Show', item %></td>
+        <% unless user_signed_in? %>
+          <td><%= link_to 'Edit', edit_item_path(item) %></td>
+          <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% unless user_signed_in? %>
+  <%= link_to 'New Item', new_item_path %>
+<% end %>

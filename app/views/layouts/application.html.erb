@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CodeWorld</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  
+  <header class="headSec">
+    <ul>
+      
+      <% if user_signed_in? %>
+        <li><a href="#">Hi <%= current_user.email %></a></li>
+      <% end %>
+      
+      <li><%= link_to "Home", '/home' %></li>
+      <li><%= link_to "About", '/about' %></li>
+      <li><%= link_to "Contact", '/contact' %></li>
+      <li><%= link_to "Items", '/items' %></li>
+      
+      <% if user_signed_in? %>
+        <li><%= link_to "View Orders", orders_path  %></li>
+        <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+        <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+      <% else %>
+        <li><%= link_to 'Register', new_user_registration_path %></li> 
+        <li><%= link_to "Log In", new_user_session_path %></li>
+      <% end %>
+      
+      <% if current_user.try(:admin?) %>
+        <h4>Your session is an Admin Session</h4>
+        <li><%= link_to 'Orders', '/orders' %></li> 
+      <% end %>
+
+    </ul>
+  </header>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
