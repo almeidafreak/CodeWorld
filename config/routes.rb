@@ -58,6 +58,10 @@ Rails.application.routes.draw do
   
   # Search routes
   post '/search' => 'items#search'
+  
+  # Profile route
+  get 'confirmations/edit' => 'confirmations#edit'
+  #get 'users/edit' => 'devise/registrations#edit'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

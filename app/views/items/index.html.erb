@@ -2,7 +2,7 @@
 
 <h1>Items</h1>
 
-<% unless user_signed_in? %>
+<% if current_user.try(:admin?) %>
   <h3>Feel free to add some more products!</h3>
 <% end %>
 
@@ -16,9 +16,11 @@
         <p class="tag">Lecturer: </p><%= item.lecturer %>
         <p class="tag">Price: </p>
         <span class="price"><%= number_to_currency(item.price, :unit => "€ ") %></span>
+        <% if user_signed_in? %>
         <a href="/cart/<%= item.id %>" class= "button"> Add to Cart</a>
         <span class="button"><%= link_to 'Show', item %></span>
-        <% unless user_signed_in? %>
+        <% end %>
+        <% if current_user.try(:admin?) %>
           <span class="button"><%= link_to 'Edit', edit_item_path(item) %></span>
           <span class="button"><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></span>
         <% end %>
@@ -29,7 +31,7 @@
 
 <br>
 
-<% unless user_signed_in? %>
+<% if current_user.try(:admin?) %>
   <%= link_to 'New Item', new_item_path %>
 <% end %>
 

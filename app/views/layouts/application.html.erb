@@ -14,19 +14,19 @@
       <li class="logo"><%= link_to "CodeWorld", '/home' %></li>
       
       <% if user_signed_in? %>
-        <li><a href="#">Hi <%= current_user.email %></a></li>
+        <li>
+          <a href="https://a36a883947b94457b231ac5604f5b6f9.vfs.cloud9.us-east-2.amazonaws.com/users/edit">
+            Hi <%= current_user.email %>
+          </a>
+        </li>
       <% end %>
       
-      <li><%= link_to "Home", '/home' %></li>
-      <li><%= link_to "About", '/about' %></li>
-      <li><%= link_to "Contact", '/contact' %></li>
-      <li><%= link_to "Items", '/items' %></li>
-      
       <% if user_signed_in? %>
+        <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
         <li><%= link_to "View Orders", orders_path  %></li>
         <li><%= link_to "Cart", cart_path  %></li>
-        <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
-        <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+        <li><%= link_to 'Edit Profile', controller: "devise/registrations", action: "edit" %></li>
+        <li><%#= link_to 'View Profile', controller: "confirmations", action: "edit" %></li>
       <% else %>
         <li><%= link_to 'Register', new_user_registration_path %></li> 
         <li><%= link_to "Log In", new_user_session_path %></li>
@@ -36,6 +36,11 @@
         <h4>Your session is an Admin Session</h4>
         <li><%= link_to 'Orders', '/orders' %></li>
       <% end %>
+      
+      <li><%= link_to "Items", '/items' %></li>
+      <li><%= link_to "Contact", '/contact' %></li>
+      <li><%= link_to "About", '/about' %></li>
+      <li><%= link_to "Home", '/home' %></li>
 
     </ul>
     
