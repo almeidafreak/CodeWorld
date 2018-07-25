@@ -25,8 +25,9 @@
         <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
         <li><%= link_to "View Orders", orders_path  %></li>
         <li><%= link_to "Cart", cart_path  %></li>
-        <li><%= link_to 'Edit Profile', controller: "devise/registrations", action: "edit" %></li>
-        <li><%#= link_to 'View Profile', controller: "confirmations", action: "edit" %></li>
+        <li><%= link_to 'View Profile', '/profile' %></li>
+        <li><%= link_to 'Edit Details', edit_user_registration_path %></li>
+        
       <% else %>
         <li><%= link_to 'Register', new_user_registration_path %></li> 
         <li><%= link_to "Log In", new_user_session_path %></li>

@@ -11,6 +11,11 @@ class StaticPagesController < ApplicationController
   def about
   end
   
+  def profile
+    @orders = Order.where(user_id: current_user.id)
+    @users = User.where(email: current_user.email)
+  end
+  
   def createOrder
     # Step 1: Get the current user
    @user = User.find(current_user.id)
