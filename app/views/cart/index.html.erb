@@ -29,9 +29,11 @@
                 <%= number_to_currency(item.price, :unit =>"€") %>
             </td>
             <td class="quantity">
+                Qty:
                 <%= quantity %>
             </td>
             <td class="price">
+                Sub Total:
                 <%= number_to_currency(quantity * item.price, :unit =>"€") %>
             </td>
         </tr>
@@ -40,16 +42,19 @@
         </tr>
             <% end %>
         <tr>
-            Grand Total: <%= number_to_currency(total, :unit => "€") %>
+            Total: <%= number_to_currency(total, :unit => "€") %>
         </tr>
         
         <% if @cart.empty? %>
             <h4>Your cart is currently empty</h4>
             <p class="boton"><%= link_to "Add some Products", '/items' %></p>
         <% else %>
-            <a href="/cart/clear" class="button">Clear Cart</a>
-            <p class="boton"><%= link_to "Continue shopping", '/items' %></p>
-            <a href="/checkout" class="button">Checkout</a>
+        <br />
+        <br />
+            <span class="boton"><%= link_to "Checkout", '/checkout' %></span><span>&emsp;</span>
+            <span class="boton"><%= link_to "Continue shopping", '/items' %></span><span>&emsp;</span>
+            <span class="boton"><%= link_to "Clear Cart", '/cart/clear' %></span>
+            <pre></pre><p>Your items:</p>
         <% end %>
     </table>
 </div>

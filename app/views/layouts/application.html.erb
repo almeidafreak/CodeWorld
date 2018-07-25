@@ -23,7 +23,9 @@
       
       <% if user_signed_in? %>
         <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
-        <li><%= link_to "View Orders", orders_path  %></li>
+      <% unless current_user.try(:admin?) %>
+        <li><%= link_to "View Orders", orders_path %></li>
+      <% end %>
         <li><%= link_to "Cart", cart_path  %></li>
         <li><%= link_to 'View Profile', '/profile' %></li>
         <li><%= link_to 'Edit Details', edit_user_registration_path %></li>
@@ -35,7 +37,7 @@
       
       <% if current_user.try(:admin?) %>
         <h4>Your session is an Admin Session</h4>
-        <li><%= link_to 'Orders', '/orders' %></li>
+        <li><%= link_to "View Orders", '/adorders' %></li>
       <% end %>
       
       <li><%= link_to "Items", '/items' %></li>

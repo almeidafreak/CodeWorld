@@ -50,6 +50,9 @@ Rails.application.routes.draw do
   get '/orders' => 'order#show'
   get '/paid' => 'static_pages#paid'
   
+  # Admin orders
+  get '/adorders' => 'orders#adminorders'
+  
   # Paypal route
   get '/thanks/:id' => 'static_pages#thanks'
   

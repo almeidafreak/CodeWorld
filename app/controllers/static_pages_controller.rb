@@ -46,8 +46,8 @@ class StaticPagesController < ApplicationController
   end
 
   def thanks
-    @order = Order.find(params[:id])
-    @order.update_attribute(:status, "Paid with PayPal")
+     @order = Order.find(params[:id])
+     @order.update_attribute(:status, "Paid with PayPal")
   end
   
   def category
