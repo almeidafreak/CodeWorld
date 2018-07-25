@@ -54,5 +54,8 @@ class StaticPagesController < ApplicationController
     catName = params[:title]
     @items = Item.where("category like ? ", catName)
   end
+  
+  def contacto
+  end
 
 end

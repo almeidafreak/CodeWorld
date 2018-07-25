@@ -47,13 +47,13 @@
         
         <% if @cart.empty? %>
             <h4>Your cart is currently empty</h4>
-            <p class="boton"><%= link_to "Add some Products", '/items' %></p>
+            <span class="button"><%= link_to "Add some Products", '/items' %></span>
         <% else %>
         <br />
         <br />
-            <span class="boton"><%= link_to "Checkout", '/checkout' %></span><span>&emsp;</span>
-            <span class="boton"><%= link_to "Continue shopping", '/items' %></span><span>&emsp;</span>
-            <span class="boton"><%= link_to "Clear Cart", '/cart/clear' %></span>
+            <span class="button"><%= link_to "Checkout", '/checkout' %></span><span>&emsp;</span>
+            <span class="button"><%= link_to "Continue shopping", '/items' %></span><span>&emsp;</span>
+            <span class="button"><%= link_to "Clear Cart", '/cart/clear' %></span>
             <pre></pre><p>Your items:</p>
         <% end %>
     </table>

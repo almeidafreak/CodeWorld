@@ -22,6 +22,9 @@
         <td><%= user.email %></td>
         <td><%= user.phone %></td>
       </tr>
+      <% if user.firstname.nil? || user.surname.nil? || user.address.nil? || user.phone.nil? %>
+        <p>Feel free to add missing details in your profile.</p>
+      <% end %>
     <% end %>
   </tbody>
 </table>
@@ -46,8 +49,8 @@
         <td><%= order.user_id %></td>
         <td><%= order.status %></td>
         <td><%= order.updated_at.strftime("%F %T") %></td>
+        <td><span class="button"><%= link_to 'Show', order %></span></td>
         <% if current_user.try(:admin?) %>
-            <td><%= link_to 'Show', order %></td>
             <td><%= link_to 'Edit', edit_order_path(order) %></td>
             <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>

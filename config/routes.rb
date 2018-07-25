@@ -66,6 +66,9 @@ Rails.application.routes.draw do
   # get 'confirmations/edit' => 'confirmations#edit'
   get '/profile' => 'static_pages#profile'
   
+  # Contact route
+  get '/contacto' => 'static_pages#contacto'
+  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

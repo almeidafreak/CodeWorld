@@ -25,8 +25,8 @@
         <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
       <% unless current_user.try(:admin?) %>
         <li><%= link_to "View Orders", orders_path %></li>
-      <% end %>
         <li><%= link_to "Cart", cart_path  %></li>
+      <% end %>
         <li><%= link_to 'View Profile', '/profile' %></li>
         <li><%= link_to 'Edit Details', edit_user_registration_path %></li>
         
@@ -41,22 +41,28 @@
       <% end %>
       
       <li><%= link_to "Items", '/items' %></li>
-      <li><%= link_to "Contact", '/contact' %></li>
-      <li><%= link_to "About", '/about' %></li>
-      <li><%= link_to "Home", '/home' %></li>
+      <% unless current_user.try(:admin?) %>
+        <li><%= link_to "Contact", '/contact' %></li>
+        <li><%= link_to "About", '/about' %></li>
+        <li><%= link_to "Home", '/home' %></li>
+      <% end %>
 
     </ul>
     
   </header>
 
   <body>
+    <div class="bod"></div>
     <%=render 'layouts/search'%>
     <%= yield %>
+    </div>
   </body>
   
   <footer class="foot">
     <p>Social Media</p>
     <p>Copyright © 2018 CodeWorld Inc. All rights reserved.</p>
-    <%= link_to 'New Category', new_category_path, :class =>"button", :role=>"button" %>
+    <% if current_user.try(:admin?) %>
+      <%= link_to 'New Category', new_category_path, :class =>"button", :role=>"button" %>
+    <% end %>
   </footer>
 </html>

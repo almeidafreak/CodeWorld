@@ -2,12 +2,12 @@
 
 <p>
   <strong>Order date:</strong>
-  <%= @order.order_date %>
+  <%= @order.order_date.strftime("%F %T") %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @order.user %>
+  <strong>User ID:</strong>
+  <%= @order.user_id %>
 </p>
 
 <p>
@@ -15,49 +15,46 @@
   <%= @order.status %>
 </p>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<span class="button"><%= link_to 'Edit', edit_order_path(@order) %></span> |
+<span class="button"><%= link_to 'Back', orders_path %></span>
 
 
 <div id="itemsContainer">
 
 <p id="notice"><%= notice %></p>
-<h1>Order Details</h1>
+<h2>Order Details</h2>
 <table id="customers">
   <tr>
     <td>Order date:</td>
     <td>Ordered By</td>
-    <td>Order date:</td>
+    <td>Order Status:</td>
   </tr>
   
   <tr>
-    <td><%= @order.order_date %></td>
-    <td><%= @order.user %></td>
+    <td><%= @order.order_date.strftime("%F %T") %></td>
+    <td><%= @order.user_id %></td>
     <td><%= @order.status %></td>
     
   </tr>
-  
-  <tr>
-    <td><%= link_to 'Edit', edit_order_path(@order), :class =>"button" %></td>
-    <td><%= link_to 'Back', orders_path, :class =>"button" %></td>
-        
-  </tr>
+
   </table>
 
 <h2>Order Items</h2>
 
  <table id="customers">
-   <% @orderitems.each do |orderitem| %>
+    <% @orderitems.each do |orderitem| %>
       <tr>
-        <td><%= orderitem.created_at %></td>
-        
+        <td>Created at</td>
+        <td>Title</td>
+        <td>Order id</td>
+      </tr>
+      <tr>
+        <td><%= orderitem.created_at.strftime("%F %T") %></td>
         <td><%= orderitem.title %></td>
-       <td><%= orderitem.order_id %></td>
-       
+        <td><%= orderitem.order_id %></td>
       </tr>
     <% end %>
- 
-   <tr></tr>
-   </table>
+  </table>
       
-   </div>
+</div>
+<span class="button"><%= link_to "Checkout", '/checkout' %></span>
