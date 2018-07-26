@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources :orders do 
     resources:orderitems
   end
+  
+  resources :contacts, only: [:new, :create]
+  # get '/contacts/new' => 'contacts#new'
+  # get '/contacts/create' => 'contacts#create'
 
   devise_for :admins
   
@@ -67,7 +71,7 @@ Rails.application.routes.draw do
   get '/profile' => 'static_pages#profile'
   
   # Contact route
-  get '/contacto' => 'static_pages#contacto'
+  # get '/contacto' => 'static_pages#contacto'
   
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
