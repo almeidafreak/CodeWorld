@@ -16,6 +16,7 @@
         <p class="tag">Lecturer: </p><%= item.lecturer %>
         <p class="tag">Price: </p>
         <span class="price"><%= number_to_currency(item.price, :unit => "€ ") %></span>
+        <p class="tag">Category: </p><%= item.category %>
         <% if user_signed_in? %>
         <a href="/cart/<%= item.id %>" class= "button"> Add to Cart</a>
         <span class="button"><%= link_to 'Show', item %></span>

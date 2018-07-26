@@ -7,21 +7,17 @@
 <div id="itemsContainer">
 <h1>Items</h1>
     <% @items.each do |item| %>
-        <div class="itemhols">
-            <h1><%= item.title %></h1>
-            <%= link_to (image_tag item.image_url, :class=>"itemholsIm"), item %>
-            <p>
-                <%= item.description %>
-            </p>
-            <p>
-                <%= item.price %>
-                <br>
-                <%= item.category %>
-                <br>
-                <%= item.lecturer %>
-                <br>
-                <%= item.skill_level %>
-            </p>
+        <div class="entry">
+            <h2><%= item.title %></h2>
+            <%= link_to (image_tag item.image_url), item %>
+            
+            <p><%= sanitize(item.description) %></p>
+            <p class="tag">Lecturer: </p><%= item.lecturer %>
+            <p class="tag">Price: </p>
+            <span class="price"><%= number_to_currency(item.price, :unit => "€ ") %></span>
+            <p class="tag">Category: </p><%= item.category %>
+            
+            <% if user_signed_in? %>
             <p>        
                 <a href="/cart/<%= item.id %>" class="button">Add to Cart</a>  
                 <%= link_to 'Show', item, :class =>"button", :role=>"button" %>
@@ -30,6 +26,7 @@
                 <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, :class =>"button", :role=>"button" %>
                 <% end %>
             </p>
+            <% end %>
         </div>
     <% end %>
 <br>

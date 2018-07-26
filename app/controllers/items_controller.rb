@@ -62,9 +62,27 @@ class ItemsController < ApplicationController
   end
   
   def search
-     @search_term = params[:q]
-     st = "%#{params[:q]}%"
-     @items = Item.where("title like ?", st)
+     
+     if params[:nombre]
+       @search_term = params[:nombre]
+     elsif params[:categoria]
+       @search_term = params[:categoria]
+     elsif params[:skill]
+       @search_term = params[:skill]
+     elsif params[:precio]
+       @search_term = params[:precio]
+     end
+     # @search_term = params[:nombre], params[:categoria], params[:skill], params[:precio]
+     
+     # st = "%#{params[:nombre]}%"
+     # @items = Item.where("title like ?", st)
+     
+     @items = Item.where("title like ? AND category like ? AND skill_level like ? AND price between ? AND ?", 
+      "%#{params[:nombre]}%", "%#{params[:categoria]}%", "%#{params[:skill]}%",
+        "#{params[:precio]}".split('-')[0], "#{params[:precio]}".split('-')[1] )
+     
+     # @items = Item.search(params[:q])
+     # where("name LIKE ? OR category LIKE ?", "%#{query}%", "%#{query}%")
   end
 
 
