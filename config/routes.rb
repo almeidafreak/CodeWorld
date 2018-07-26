@@ -10,8 +10,6 @@ Rails.application.routes.draw do
   end
   
   resources :contacts, only: [:new, :create]
-  # get '/contacts/new' => 'contacts#new'
-  # get '/contacts/create' => 'contacts#create'
 
   devise_for :admins
   
@@ -69,9 +67,6 @@ Rails.application.routes.draw do
   # Profile route
   # get 'confirmations/edit' => 'confirmations#edit'
   get '/profile' => 'static_pages#profile'
-  
-  # Contact route
-  # get '/contacto' => 'static_pages#contacto'
   
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
