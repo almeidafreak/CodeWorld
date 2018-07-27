@@ -11,6 +11,8 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    
+    session[:payme] = @linetotal
     @user = User.find(current_user.id)
     @orders = @user.orders.all
     @orderitems = Orderitem.all

@@ -45,6 +45,8 @@ Rails.application.routes.draw do
   
   get '/checkout' => 'cart#createOrder'
   
+  get '/checkout/:price' => 'cart#clearOrder'
+  
   # Devise routes
   root :to => 'site#home'
   

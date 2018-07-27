@@ -23,7 +23,7 @@
                 <%= link_to item.title, item %>
             </td>
             <td>
-                <a href="/cart/remove/<%= item.id %>">Remove From Cart</a>
+                <span class="button"><a href="/cart/remove/<%= item.id %>">Remove From Cart</a></span>
             </td>
             <td class="price">
                 <%= number_to_currency(item.price, :unit =>"€") %>

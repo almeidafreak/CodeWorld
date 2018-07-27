@@ -77,7 +77,7 @@ class ItemsController < ApplicationController
      # st = "%#{params[:nombre]}%"
      # @items = Item.where("title like ?", st)
      
-     @items = Item.where("title like ? AND category like ? AND skill_level like ? AND price between ? AND ?", 
+     @items = Item.where("title like ? or category like ? or skill_level like ? or price between ? AND ?", 
       "%#{params[:nombre]}%", "%#{params[:categoria]}%", "%#{params[:skill]}%",
         "#{params[:precio]}".split('-')[0], "#{params[:precio]}".split('-')[1] )
      

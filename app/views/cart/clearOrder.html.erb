@@ -48,8 +48,8 @@ You have just placed an order <%=@orderReg %></h5>
        <td>Order Total: <%= number_to_currency(@totalus, :unit => "€ ") %></td>
        
        
-      </tr>
-    <%# @overall = @total %>
+    </tr>
+    <% @overall = @total %>
     
 </table>
 Pay with PayPal
@@ -58,7 +58,7 @@ Pay with PayPal
 <input type="hidden" name="business" value="jagonzacas@hotmail.com">
 <input type="hidden" name="item_name" value="Code World Order Number <%= @orderNum %>">
 <input type="hidden" name="currency_code" value="EUR">
-<input type="hidden" name="amount" value="<%= @totalus %>">
+<input type="hidden" name="amount" value="<%= @overall %>">
 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
 <input type="hidden" name="return" value="https://a36a883947b94457b231ac5604f5b6f9.vfs.cloud9.us-east-2.amazonaws.com/paid" >
 </form>
@@ -82,7 +82,6 @@ Pay with PayPal
           data-description="Payment"
           data-amount="<%= @totalus * 100 %>"
           data-locale="auto"
-          data-image=""
           data-currency="eur">
   </script>
 <% end %>

@@ -51,10 +51,9 @@ class CartController < ApplicationController
     redirect_to :action => :index
   end
   
-  
-  
   def createOrder
-    
+    @howmuchnow = session[:payme]
+    @howmuch = params[:price]
     # Step 1: Get the current user
    @user = User.find(current_user.id)
   
@@ -73,6 +72,13 @@ class CartController < ApplicationController
     @orders = Order.all
     @orderitems = Orderitem.where(order_id: Order.last)
     session[:cart] = nil
+  end
+  
+  def clearOrder
+    @user = User.find(current_user.id)
+    @orders = Order.all
+    @orderitems = Orderitem.where(order_id: Order.last)
+    @order = @user.orders.build(:order_date => DateTime.now, :status => 'Pending')
   end
 
 end

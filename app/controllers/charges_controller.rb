@@ -1,4 +1,6 @@
 class ChargesController < ApplicationController
+  
+  before_action :authenticate_user!
     
     def new
     end
@@ -16,14 +18,15 @@ class ChargesController < ApplicationController
         :customer    => customer.id,
         :amount      => @amount,
         :description => 'Rails Stripe customer',
-        :currency    => 'usd'
+        :currency    => 'eur'
       )
     
         rescue Stripe::CardError => e
         flash[:error] = e.message
         redirect_to new_charge_path
     end
-    
+    #@user = User.find(current_user.id)
+    #@order.update_attribute(:status , "Paid by User: #{current_user.email}")
 end
 
 # This controller does two things

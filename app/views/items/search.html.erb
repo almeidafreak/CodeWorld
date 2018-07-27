@@ -27,7 +27,7 @@
               <%= link_to 'Edit', edit_item_path(item) %>
               <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %>
             <%else%>
-              <a href="/cart/<%= item.id %>">Add to Cart</a>
+              <span class="button"><a href="/cart/<%= item.id %>">Add to Cart</a></span>
             <%end%>  
         </div>
         </td>
