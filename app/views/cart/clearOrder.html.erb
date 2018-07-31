@@ -4,17 +4,17 @@
 You have just placed an order <%=@orderReg %></h5>
 </div>
 
-
 <table id="customers">
     <tr>
          
         <% @orders.limit(1).order(id: :desc).each do |order| %>
 
        <td>Order reference for the order you just placed: <%= order.id %></td>
+       <% @orderNum = order.id %>
         <% end %>
     </tr>
 </table>    
-    
+    <h2>Order ID: <%= @orderNum %></h2>
     
 <table id="customers">
      <% @total = 0 %>
@@ -37,7 +37,6 @@ You have just placed an order <%=@orderReg %></h5>
       
       </tr>
     <% end %>
-    <%# @orderNum = Order.id %>
     
     <tr>
         <% if @howmuch %>
@@ -60,7 +59,7 @@ Pay with PayPal
 <input type="hidden" name="currency_code" value="EUR">
 <input type="hidden" name="amount" value="<%= @overall %>">
 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
-<input type="hidden" name="return" value="https://a36a883947b94457b231ac5604f5b6f9.vfs.cloud9.us-east-2.amazonaws.com/paid" >
+<input type="hidden" name="return" value="https://a36a883947b94457b231ac5604f5b6f9.vfs.cloud9.us-east-2.amazonaws.com/thanks/<%= @orderNum %>" >
 </form>
 <br />
 <%= form_tag charges_path do %>
@@ -71,10 +70,10 @@ Pay with PayPal
       </div>
     <% end %>
     <label class="amount">
-        
-        <%# The line below needs to be the total price of the cart %>
-        
+
     </label>
+    <%= hidden_field_tag 'amount', @totalus %>
+    <%= hidden_field_tag 'orderid', @orderNum %>
   </article>
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"

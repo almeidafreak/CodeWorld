@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   
   # Orders routes
   get '/orders' => 'order#show'
-  get '/paid' => 'static_pages#paid'
+  get '/paid/:id' => 'static_pages#paid'
   
   # Admin orders
   get '/adorders' => 'orders#adminorders'

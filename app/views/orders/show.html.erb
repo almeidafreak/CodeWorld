@@ -14,8 +14,9 @@
   <strong>Status:</strong>
   <%= @order.status %>
 </p>
-
-<span class="button"><%= link_to 'Edit', edit_order_path(@order) %></span> |
+<% if current_user.try(:admin?) %>
+<span class="button"><%= link_to 'Edit', edit_order_path(@order) %></span>
+|<% end %>
 <span class="button"><%= link_to 'Back', orders_path %></span>
 
 <div id="itemsContainer">
@@ -63,5 +64,8 @@
   </table>
       
 </div>
-<span class="button"><a href="/checkout/<%= @linetotal %>">Checkout</a></span>
-<span class="button"><%= link_to 'Cancel Order', @order, method: :delete %></span>
+
+<% unless @order.status.start_with?('Paid') %>
+  <span class="button"><a href="/checkout/<%= @linetotal %>">Checkout</a></span>
+  <span class="button"><%= link_to 'Cancel Order', @order, method: :delete %></span>
+<% end %>
