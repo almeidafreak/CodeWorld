@@ -4,7 +4,11 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    #if params[:set_locale]
+      #redirect_to store_url(locale: params[:set_locale])
+    #else
+      @categories = Category.all
+    #end
   end
 
   # GET /categories/1

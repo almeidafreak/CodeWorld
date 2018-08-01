@@ -9,8 +9,12 @@ class ChargesController < ApplicationController
     end
     
     def index
-      @order = Order.last
-    @order.update_attribute(:status , "Paid by Stripe: #{current_user.email}")
+      #if params[:set_locale]
+        #redirect_to store_url(locale: params[:set_locale])
+      #else
+        @order = Order.last
+        @order.update_attribute(:status , "Paid by Stripe: #{current_user.email}")
+      #end
     end
 
     def create

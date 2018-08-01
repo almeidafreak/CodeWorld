@@ -4,7 +4,11 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    #if params[:set_locale]
+      #redirect_to store_url(locale: params[:set_locale])
+    #else
+      @items = Item.all
+    #end
   end
 
   # GET /items/1

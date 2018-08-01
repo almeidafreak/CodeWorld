@@ -1,8 +1,12 @@
 class StaticPagesController < ApplicationController
 
   def home
-    @categories = Category.all
-    @items = Item.all
+    if params[:set_locale]
+      redirect_to index_url(locale: params[:set_locale])
+    else
+      @categories = Category.all
+      @items = Item.all
+    end
   end
 
   def contact

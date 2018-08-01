@@ -75,6 +75,14 @@ Rails.application.routes.draw do
   # Error routes
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
+  
+  # Translation
+  scope '(:locale)' do
+    resources :orders
+    resources :line_items
+    resources :carts
+    root 'static_pages#home', as: 'index', via: :all
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

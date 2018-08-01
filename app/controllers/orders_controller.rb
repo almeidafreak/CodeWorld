@@ -4,8 +4,12 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @user = User.find(current_user.id)
-    @orders = @user.orders.all
+    #if params[:set_locale]
+      #redirect_to store_url(locale: params[:set_locale])
+    #else
+      @user = User.find(current_user.id)
+      @orders = @user.orders.all
+    #end
   end
 
   # GET /orders/1
