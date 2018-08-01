@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'errors/not_found'
+  get 'errors/internal_server_error'
   resources :categories
   get 'orderitems/index'
   get 'orderitems/show'
@@ -70,6 +72,9 @@ Rails.application.routes.draw do
   # get 'confirmations/edit' => 'confirmations#edit'
   get '/profile' => 'static_pages#profile'
   
+  # Error routes
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
