@@ -1,20 +1,20 @@
 
 <%= form_tag("/search", :method => "post", :class => "form-inline") do %>
-    <%= label_tag("Course Name:") %>
+    <%= label_tag(t('.course_name')) %>
     <%= text_field_tag(:nombre) %>
     
-    <%= label_tag("Category:") %>
+    <%= label_tag(t('.category')) %>
     
     <%= select_tag "categoria", options_for_select(["Web", "Software"]), :include_blank => true %>
     
-    <%= label_tag("Skill lvl:") %>
+    <%= label_tag(t('.skill_level')) %>
     
     <%= select_tag "skill", options_for_select(["Beginner", "Advanced"]), :include_blank => true %>
     
-    <%= label_tag("Price Range:") %>
+    <%= label_tag(t('.price_range')) %>
     
     <%= select_tag "precio", options_for_select(["1-50", "50-100", "100-150"]), :include_blank => true %>
     
-    <%= submit_tag("Search") %>
+    <%= submit_tag(t('.search')) %>
 <% end %>
 <pre></pre>

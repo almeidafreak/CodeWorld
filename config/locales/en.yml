@@ -33,4 +33,41 @@ en:
   hello: "Hello world"
   layouts:
     application:
-        home:      "Home"
+      codeWorld:  "CodeWorld"
+      home:       "Home"
+      about:      "About"
+      contact:    "Contact"
+      items:      "Items"
+      edit_details:   "Edit Details"
+      view_profile:   "View Profile"
+      cart:       "Cart"
+      view_orders:    "View Orders"
+      login:      "Login"
+      logout:     "Log Out"
+      hi:         "Hi"
+      register:   "Register"
+      social:     "Social Media"
+      copyright:  "Copyright © CodeWorld Inc. All rights reserved."
+        
+    popular:
+      addToCart:  "Add to Cart"
+      show:       "Show"
+      price:      "Price"
+      lecturer:   "Lecturer"
+      
+    search:
+      course_name:  "Course Name:"
+      category:     "Category:"
+      skill_level:  "Skill Level:"
+      price_range:  "Price Range:"
+      search:       "Search"
+      
+    categories:
+      check:      "Check "
+      products:   " products"
+      
+  static_pages:
+    home:
+      hottest:    "Hottest Products"
+      categories: "Categories"
+      welcome:    "Welcome to Code World"

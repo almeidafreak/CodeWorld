@@ -1,4 +1,41 @@
 es:
     layouts:
         application:
-            home:        "Inicio"
+            codeWorld:  "Mundo del Código"
+            home:       "Inicio"
+            about:      "Acerca"
+            contact:    "Contacto"
+            items:      "Productos"
+            edit_details:   "Editar Detalles"
+            view_profile:   "Ver Perfil"
+            cart:       "Carro"
+            view_orders:    "Ver Ordenes"
+            login:      "Iniciar Sesión"
+            logout:     "Cerrar Sesión"
+            hi:         "Hola"
+            register:   "Registrar"
+            social:     "Medios Comunicación Social"
+            copyright:  "Derechos de Autor © CodeWorld Inc. Todos los derechos reservados."
+            
+        popular:
+            addToCart:  "Añadir al Carro"
+            show:       "Ver"
+            price:      "Precio"
+            lecturer:   "Profesor"
+        
+        search:
+            course_name: "Nombre del curso:"
+            category:     "Categoría:"
+            skill_level:  "Nivel de Habilidad:"
+            price_range:  "Rango de Precio:"
+            search:       "Buscar"
+            
+        categories:
+            check:      "Mirar "
+            products:   " productos"
+        
+    static_pages:
+        home:
+            hottest:    "Productos Populares"
+            categories: "Categorías"
+            welcome:    "Bienvenido"

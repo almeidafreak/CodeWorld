@@ -11,28 +11,28 @@
   
   <header class="headSec">
     <ul>
-      <li class="logo"><%= link_to "CodeWorld", '/home' %></li>
+      <li class="logo"><%= link_to t('.codeWorld'), '/home' %></li>
       
       <% if user_signed_in? %>
         <li>
           <a href="https://a36a883947b94457b231ac5604f5b6f9.vfs.cloud9.us-east-2.amazonaws.com/users/edit">
-            Hi <%= current_user.email %>
+            <%=t('.hi')%> <%= current_user.email %>
           </a>
         </li>
       <% end %>
       
       <% if user_signed_in? %>
-        <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+        <li><%= link_to t('.logout'), destroy_user_session_path, :method => :delete %></li>
       <% unless current_user.try(:admin?) %>
-        <li><%= link_to "View Orders", orders_path %></li>
-        <li><%= link_to "Cart", cart_path  %></li>
+        <li><%= link_to t('.view_orders'), orders_path %></li>
+        <li><%= link_to t('.cart'), cart_path  %></li>
       <% end %>
-        <li><%= link_to 'View Profile', '/profile' %></li>
-        <li><%= link_to 'Edit Details', edit_user_registration_path %></li>
+        <li><%= link_to t('.view_profile'), '/profile' %></li>
+        <li><%= link_to t('.edit_details'), edit_user_registration_path %></li>
         
       <% else %>
-        <li><%= link_to 'Register', new_user_registration_path %></li> 
-        <li><%= link_to "Log In", new_user_session_path %></li>
+        <li><%= link_to t('.register'), new_user_registration_path %></li> 
+        <li><%= link_to t('.login'), new_user_session_path %></li>
       <% end %>
       
       <% if current_user.try(:admin?) %>
@@ -40,10 +40,10 @@
         <li><%= link_to "View Orders", '/adorders' %></li>
       <% end %>
       
-      <li><%= link_to "Items", '/items' %></li>
+      <li><%= link_to t('.items'), '/items' %></li>
       <% unless current_user.try(:admin?) %>
-        <li><%= link_to "Contact", '/contacts/new' %></li>
-        <li><%= link_to "About", '/about' %></li>
+        <li><%= link_to t('.contact'), '/contacts/new' %></li>
+        <li><%= link_to t('.about'), '/about' %></li>
         <li><%= link_to t('.home'), '/home' %></li>
       <% end %>
 
@@ -68,8 +68,8 @@
   </body>
   
   <footer class="foot">
-    <p>Social Media</p>
-    <p>Copyright © 2018 CodeWorld Inc. All rights reserved.</p>
+    <p><%= t('.social') %></p>
+    <p><%= t('.copyright') %></p>
     <% if current_user.try(:admin?) %>
       <%= link_to 'New Category', new_category_path, :class =>"button", :role=>"button" %>
     <% end %>

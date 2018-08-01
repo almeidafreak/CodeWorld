@@ -1,11 +1,11 @@
 <%# Line below displays messages like "You have logged in" %>
 <p id="notice"><%= notice %></p>
 
-<h1>Welcome to Code World</h1>
+<h1><%= t('.welcome') %></h1>
 
 <br />
-<h3>Categories</h3>
+<h3><%= t('.categories') %></h3>
 <%=render 'layouts/categories'%>
 <br />
-<h3>Hottest Products</h3>
+<h3><%= t('.hottest') %></h3>
 <%=render 'layouts/popular'%>

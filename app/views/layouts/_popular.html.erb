@@ -2,17 +2,17 @@
 
 <table>
   <tbody>
-    <% @items.limit(3).order(:id).each do |item| %>
+    <% @items.limit(2).order(:id).each do |item| %>
       <div class="entry">
         <%= image_tag(item.image_url) %>
         <h3><%= item.title %></h3>
         <p><%= sanitize(item.description) %></p>
-        <p class="tag">Lecturer: </p><%= item.lecturer %>
-        <p class="tag">Price: </p>
+        <p class="tag"><%=t('.lecturer')%>: </p><%= item.lecturer %>
+        <p class="tag"><%=t('.price')%>: </p>
         <span class="price"><%= number_to_currency(item.price, :unit => "€ ") %></span>
         <% if user_signed_in? %>
-        <a href="/cart/<%= item.id %>" class= "button"> Add to Cart</a>
-        <span class="button"><%= link_to 'Show', item %></span>
+        <a href="/cart/<%= item.id %>" class= "button"><%= t('.addToCart') %></a>
+        <span class="button"><%= link_to t('.show'), item %></span>
         <% end %>
         <% if current_user.try(:admin?) %>
           <span class="button"><%= link_to 'Edit', edit_item_path(item) %></span>
