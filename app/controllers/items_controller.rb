@@ -67,26 +67,24 @@ class ItemsController < ApplicationController
   
   def search
      
-     if params[:nombre]
+     if params[:nombre].present?
        @search_term = params[:nombre]
-     elsif params[:categoria]
+       @items = Item.where("title like ?", "%#{params[:nombre]}%",)
+     elsif params[:categoria].present?
        @search_term = params[:categoria]
-     elsif params[:skill]
+       @items = Item.where("category like ?", "%#{params[:categoria]}%" )
+     elsif params[:skill].present?
        @search_term = params[:skill]
-     elsif params[:precio]
+       @items = Item.where("skill_level like ?", "%#{params[:skill]}%")
+     elsif params[:precio].present?
        @search_term = params[:precio]
+        @items = Item.where("price between ? AND ?", "#{params[:precio]}".split('-')[0], "#{params[:precio]}".split('-')[1] )
      end
-     # @search_term = params[:nombre], params[:categoria], params[:skill], params[:precio]
      
-     # st = "%#{params[:nombre]}%"
-     # @items = Item.where("title like ?", st)
+      # @items = Item.where("title like ? or category like ? or skill_level like ? or price between ? AND ?", 
+      # "%#{params[:nombre]}%", "%#{params[:categoria]}%", "%#{params[:skill]}%",
+      # "#{params[:precio]}".split('-')[0], "#{params[:precio]}".split('-')[1] )
      
-     @items = Item.where("title like ? or category like ? or skill_level like ? or price between ? AND ?", 
-      "%#{params[:nombre]}%", "%#{params[:categoria]}%", "%#{params[:skill]}%",
-        "#{params[:precio]}".split('-')[0], "#{params[:precio]}".split('-')[1] )
-     
-     # @items = Item.search(params[:q])
-     # where("name LIKE ? OR category LIKE ?", "%#{query}%", "%#{query}%")
   end
 
 
