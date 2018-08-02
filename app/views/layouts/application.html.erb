@@ -38,6 +38,7 @@
       <% if current_user.try(:admin?) %>
         <h4>Your session is an Admin Session</h4>
         <li><%= link_to "View Orders", '/adorders' %></li>
+        <li><%= link_to "Users", '/users' %></li>
       <% end %>
       
       <li><%= link_to t('.items'), '/items' %></li>

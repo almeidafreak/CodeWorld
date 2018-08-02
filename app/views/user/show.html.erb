@@ -1,0 +1,20 @@
+
+<table>
+  <tbody>
+    <% @users.each do |user| %>
+      <div class="entry">
+
+        <h3><%= user.firstname %></h3>
+        <h3><%= user.surname %></h3>
+        <p class="tag">Address: </p><%= user.address %>
+        <p class="tag">Phone: </p>
+        <span class="price"><%= user.phone %></span>
+        <p class="tag">Email: </p><%= user.email %>
+<% if false %>
+        <span class="button"><%= link_to 'Show', user %></span>
+        <span class="button"><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+<% end %>
+      </div>
+    <% end %>
+  </tbody>
+</table>

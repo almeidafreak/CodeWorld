@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   resources :charges
   
   root 'static_pages#home'
+  
+  get "/users" => 'user#show'
 
   # Static pages routes
   get '/home' => 'static_pages#home'

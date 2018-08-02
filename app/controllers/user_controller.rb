@@ -1,5 +1,11 @@
 class UserController < ApplicationController
     
+    before_action :authenticate_user!
+    
+    def show
+        @users = User.all
+    end
+    
     def login
         session[:login] = 1
         flash[:notice] = "You're logged in"

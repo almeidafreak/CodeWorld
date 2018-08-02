@@ -45,12 +45,6 @@ class CartController < ApplicationController
     redirect_to :action => :index
   end
   
-  def clearCart
-    # clear cart and remove all items 
-    session[:cart] = nil
-    redirect_to :action => :index
-  end
-  
   def createOrder
     @howmuchnow = session[:payme]
     @howmuch = params[:price]
