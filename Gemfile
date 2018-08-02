@@ -14,13 +14,10 @@ gem 'mail_form', '~> 1.5', '>= 1.5.1'
 gem 'rails', '~> 5.2.0'
 
 # Use sqlite3 as the database for Active Record
-group :development do
-  gem 'sqlite3'
-end
+gem 'sqlite3'
 
-group :production do
-  gem 'pg'
-end
+# Use Capistrano for deployment
+gem 'rvm-capistrano', group: :development
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
