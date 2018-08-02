@@ -1,5 +1,9 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  
+  # The set_order method will be called before only the show, edit, update and destroy actions.
+  
+  before_action :authenticate_user!
 
   # GET /orders
   # GET /orders.json
