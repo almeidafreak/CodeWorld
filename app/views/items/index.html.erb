@@ -18,7 +18,9 @@
         <span class="price"><%= number_to_currency(item.price, :unit => "€ ") %></span>
         <p class="tag">Category: </p><%= item.category %>
         <% if user_signed_in? %>
+        <% unless current_user.try(:admin?) %>
         <a href="/cart/<%= item.id %>" class= "button"> Add to Cart</a>
+        <% end %>
         <span class="button"><%= link_to 'Show', item %></span>
         <% end %>
         <% if current_user.try(:admin?) %>
@@ -33,7 +35,7 @@
 <br>
 
 <% if current_user.try(:admin?) %>
-  <%= link_to 'New Item', new_item_path %>
+  <span class="button"><%= link_to 'New Item', new_item_path %></span>
 <% end %>
 
 
