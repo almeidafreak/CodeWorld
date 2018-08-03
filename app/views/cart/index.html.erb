@@ -39,6 +39,7 @@
         </tr>
         <tr>
             <% total += quantity * item.price %>
+            <% @linetotal = total %>
         </tr>
             <% end %>
         <tr>
@@ -51,7 +52,7 @@
         <% else %>
         <br />
         <br />
-            <span class="button"><%= link_to "Checkout", '/checkout' %></span><span>&emsp;</span>
+            <span class="button"><a href="/checkout/<%= @linetotal %>">Checkout</a></span><span>&emsp;</span>
             <span class="button"><%= link_to "Continue shopping", '/items' %></span><span>&emsp;</span>
             <span class="button"><%= link_to "Clear Cart", '/cart/clear' %></span>
             <pre></pre><p>Your items:</p>

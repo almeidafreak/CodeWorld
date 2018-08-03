@@ -48,7 +48,7 @@ class StaticPagesController < ApplicationController
     flash[:notice] = 'Transaction Complete'
     @order = Order.find(params[:id])
     @order.update_attribute(:status , "Paid with Stripe: #{current_user.email}")
-  
+    # redirect_to "/paid/#{@orderNum}"
     #"Paid by User:#{current_user.id} #{current_user.name} #{current_user.surname}")
   end
 
