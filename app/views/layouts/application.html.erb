@@ -15,7 +15,7 @@
       
       <% if user_signed_in? %>
         <li>
-          <a href="https://a36a883947b94457b231ac5604f5b6f9.vfs.cloud9.us-east-2.amazonaws.com/users/edit">
+          <a href="https://a36a883947b94457b231ac5604f5b6f9.vfs.cloud9.us-east-2.amazonaws.com/profile">
             <%=t('.hi')%> <%= current_user.email %>
           </a>
         </li>
@@ -36,12 +36,14 @@
       <% end %>
       
       <% if current_user.try(:admin?) %>
-        <h4>Your session is an Admin Session</h4>
         <li><%= link_to "View Orders", '/adorders' %></li>
         <li><%= link_to "Users", '/users' %></li>
       <% end %>
       
-      <li><%= link_to t('.items'), '/items' %></li>
+        <li><%= link_to t('.items'), '/items' %></li>
+      <% if current_user.try(:admin?) %>
+        <li style="color:#1a1aff;padding-top:14px;font-weight:bold;">Admin Session</li>
+      <% end %>
       <% unless current_user.try(:admin?) %>
         <li><%= link_to t('.contact'), '/contacts/new' %></li>
         <li><%= link_to t('.about'), '/about' %></li>

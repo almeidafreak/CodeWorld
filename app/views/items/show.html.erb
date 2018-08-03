@@ -35,5 +35,8 @@
   <%= @item.skill_level %>
 </p>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<% if current_user.try(:admin?) %>
+<span class="button"><%= link_to 'Edit', edit_item_path(@item) %></span> |
+<% end %>
+<span class="button"><%= link_to 'Back', items_path %></span>
+<%#= link_to 'Add to Cart', {:controller => 'cart', :action => 'add', :param => @item.id} %>

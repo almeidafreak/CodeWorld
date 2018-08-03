@@ -17,8 +17,8 @@ class ApplicationController < ActionController::Base
             :password, :remember_me)}
         devise_parameter_sanitizer.permit(:sign_in) { |u| u.permit({roles: []}, :email,
             :password, :remember_me)}
-        devise_parameter_sanitizer.permit(:account_update) { |u| u.permit({roles: []}, :firstname, :email,
-            :password)}
+        devise_parameter_sanitizer.permit(:account_update) { |u| u.permit({roles: []}, :firstname, :surname, :address,
+        :phone, :email, :password, :current_password)}
     end
     
     def after_sign_in_path_for(resource_or_scope)

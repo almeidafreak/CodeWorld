@@ -3,7 +3,12 @@ class UserController < ApplicationController
     before_action :authenticate_user!
     
     def show
-        @users = User.all
+        #@user = User.where(email: current_user.email)
+        if current_user.admin
+            @users = User.all
+        else
+            redirect_to root_path
+        end
     end
     
     def login

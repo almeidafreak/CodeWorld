@@ -19,7 +19,6 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
-    
     session[:payme] = @linetotal
     @user = User.find(current_user.id)
     @orders = @user.orders.all
@@ -27,8 +26,14 @@ class OrdersController < ApplicationController
     @orderitems = Orderitem.where(order_id: params[:id])
   end
   
+  # before_action :authenticate_user!, only: [:adminorders]
+  
   def adminorders
-    @orders = Order.all
+    if current_user.admin
+      @orders = Order.all
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /orders/new
