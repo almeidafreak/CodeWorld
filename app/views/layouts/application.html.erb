@@ -26,8 +26,11 @@
   <% end %>
   
   <% unless current_user.try(:admin?) %>
-    <p style="text-align:right;">Cart Items: <%= @items %> | 
-      SubTotal: <%= number_to_currency(@total, :unit => "€ ") %></p>
+    <p style="text-align:right;">
+      <% if user_signed_in? %>
+    <b>Last time you logged in:</b> <%= current_user.last_sign_in_at.strftime("%F %T") %>
+  <% end %><b>Cart Items:</b> <%= @items %> | 
+      <b>SubTotal:</b> <%= number_to_currency(@total, :unit => "€ ") %></p>
   <% end %>
   
   <header class="headSec">
