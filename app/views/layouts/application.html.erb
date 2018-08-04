@@ -8,12 +8,14 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  
   <!-- The following clears the current item qty and sub total that displays through all pages
   when the user signs out -->
   <% unless user_signed_in? %>
     <% @@totalqty = 0 %>
     <% @@totalDisplayed = 0 %>
   <% end %>
+  
   <!-- The following deals with class variable initialization issues -->
   <% unless @@totalqty ||= 0 && @@totalDisplayed ||= 0 %>
     <% @items = 0 %>
@@ -22,8 +24,12 @@
     <% @items = @@totalqty %>
     <% @total = @@totalDisplayed %>
   <% end %>
-  <p style="text-align:right;">Cart Items: <%= @items %> | 
-    SubTotal: <%= number_to_currency(@total, :unit => "€ ") %></p>
+  
+  <% unless current_user.try(:admin?) %>
+    <p style="text-align:right;">Cart Items: <%= @items %> | 
+      SubTotal: <%= number_to_currency(@total, :unit => "€ ") %></p>
+  <% end %>
+  
   <header class="headSec">
     <ul>
       <li class="logo"><%= link_to t('.codeWorld'), '/home' %></li>

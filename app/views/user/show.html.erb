@@ -10,10 +10,11 @@
         <p class="tag">Phone: </p>
         <span class="price"><%= user.phone %></span>
         <p class="tag">Email: </p><%= user.email %>
-<% if false %>
-        <span class="button"><%= link_to 'Show', user %></span>
-        <span class="button"><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-<% end %>
+        
+        <span class="button">
+          <%= link_to "Destroy", admin_destroy_user_path(user), method: :delete, 
+            data: { confirm: "You sure?" } %>
+        </span>
       </div>
     <% end %>
   </tbody>

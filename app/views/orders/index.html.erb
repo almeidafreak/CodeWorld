@@ -21,7 +21,9 @@
         <td><%= order.id %></td>
         <td><%= order.status %></td>
         <td><span class="button"><%= link_to 'Show', order %></span></td>
-        <td><span class="button"><%= link_to 'Cancel Order', order, method: :delete, data: { confirm: 'Are you sure?' } %></span></td>
+        <% unless order.status.start_with?('Paid') %>
+          <td><span class="button"><%= link_to 'Cancel Order', order, method: :delete, data: { confirm: 'Are you sure?' } %></span></td>
+        <% end %>
         <% if current_user.try(:admin?) %>
           <td><span class="button"><%= link_to 'Edit', edit_order_path(order) %></span></td>
         <% end %>

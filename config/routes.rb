@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     resources :orders
   end
   
+  match 'users/:id' => 'user#destroy', :via => :delete, :as => :admin_destroy_user
+  
   get 'cart/index'
   resources :items
   

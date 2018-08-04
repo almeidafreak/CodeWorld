@@ -61,3 +61,12 @@
 </table>
 <br>
 <% end %>
+<br>
+<br>
+<br>
+<% if current_user.try(:admin?) %>
+  <span class="button">
+    <%= link_to "Quit Being an Admin", registration_path(current_user), data: { confirm: 
+      "Are you sure? You will not be able to log in as an admin again" }, method: :delete %>
+  </span>
+<% end %>
