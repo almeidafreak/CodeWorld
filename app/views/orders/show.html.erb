@@ -52,6 +52,7 @@
         <td><%= orderitem.created_at.strftime("%F %T") %></td>
         <td><%= orderitem.title %></td>
         <td><%= orderitem.order_id %></td>
+        <% @orderItId = orderitem.order_id %>
       </tr>
       <tr>
         <td><b>Total Price</b></td>
@@ -65,7 +66,21 @@
       
 </div>
 
+<h1>Order ID: <%= @orderItId %></h1>
+
 <% unless @order.status.start_with?('Paid') %>
-  <span class="button"><a href="/checkout/<%= @linetotal %>">Checkout</a></span>
+
+  <% if @order == @comodin %>
+    <!-- This is your latest order -->
+    <span class="button">
+      <a href="/checkout/<%= @linetotal %>">Checkout</a>
+    </span>
+  <% else %>
+    <!-- This is NOT your latest order -->
+    <span class="button">
+      <%= link_to "CheckItout", :controller => "key", :action => "finishOrder", :price => @linetotal, :oi => @orderItId %>
+    </span>
+  <% end %>
+
   <span class="button"><%= link_to 'Cancel Order', @order, method: :delete %></span>
 <% end %>

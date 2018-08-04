@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
     protected
     
     def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit({roles: []}, :firstname, :email,
+        devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit({roles: []}, :firstname, :surname, :address,
+        :phone, :email,
             :password, :remember_me)}
         devise_parameter_sanitizer.permit(:sign_in) { |u| u.permit({roles: []}, :email,
             :password, :remember_me)}
@@ -23,6 +24,10 @@ class ApplicationController < ActionController::Base
     
     def after_sign_in_path_for(resource_or_scope)
         '/profile'
+    end
+    
+    def after_sign_out_path_for(resource_or_scope)
+        root_path
     end
     
     def set_i18n_locale_from_params

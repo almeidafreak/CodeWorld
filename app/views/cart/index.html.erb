@@ -9,6 +9,7 @@
 <div id="itemsContainer">
     <table id="customers">
         <% total = 0 %>
+        <% qty = 0 %>
         <% @cart.each do |id, quantity| %>
         
         <% item = Item.find_by_id(id) %>
@@ -39,11 +40,14 @@
         </tr>
         <tr>
             <% total += quantity * item.price %>
+            <% qty += quantity %>
             <% @linetotal = total %>
         </tr>
             <% end %>
         <tr>
             Total: <%= number_to_currency(total, :unit => "€") %>
+            <% @@totalqty = qty %>
+            <% @@totalDisplayed = total %>
         </tr>
         
         <% if @cart.empty? %>
@@ -52,7 +56,7 @@
         <% else %>
         <br />
         <br />
-            <span class="button"><a href="/checkout/<%= @linetotal %>">Checkout</a></span><span>&emsp;</span>
+            <span class="button"><a href="/checkout">Checkout</a></span><span>&emsp;</span>
             <span class="button"><%= link_to "Continue shopping", '/items' %></span><span>&emsp;</span>
             <span class="button"><%= link_to "Clear Cart", '/cart/clear' %></span>
             <pre></pre><p>Your items:</p>

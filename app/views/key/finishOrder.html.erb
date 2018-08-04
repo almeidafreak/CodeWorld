@@ -1,65 +1,31 @@
+<!-- This page has different content because the user 
+just saw a screen with the details of his order -->
+
 <p id="notice"><%= notice %></p>
 <div id="itemsContainer">
-    <h5>Thank You<br>
-You have just placed an order <%=@orderReg %></h5>
+    <h5>Thank You<br></h5>
 </div>
-
 
 <table id="customers">
     <tr>
-         
-        <% @orders.limit(1).order(id: :desc).each do |order| %>
-
-       <td>Order reference for the order you just placed: <%= order.id %></td>
-       <% @orderNum = order.id %>
-        <% end %>
+       <td>Order reference for the order you just placed: <%= @orderID %></td>
+       <% @orderNum = @orderID %>
     </tr>
 </table>    
     <h2>Order ID: <%= @orderNum %></h2>
     
-<table id="customers">
-     <% @total = 0 %>
-    <% @orderitems.each do |id,quantity| %>
-    
-      <tr>
-        <% item = Orderitem.find_by_id(id) %>
-       
-        <td><%= item.title %></td>
-        <td><%= item.quantity %></td>
-       <td><%#=number_to_currency(item.price, :unit => "€")%></td> 
-       <td><%= number_to_currency(item.quantity * item.price, :unit => "€ ") %></td>
-       </tr>
-       
-       <% timx = (item.quantity * item.price)%>
+<h4>You'll pay: <%= number_to_currency(@linetotal, :unit => "€") %></h4>
 
-     
-     
-      <% @total += timx %>
-      
-      </tr>
-    <% end %>
-    <%# @orderNum = Order.id %>
-    
-    <tr>
-        <% if @howmuch %>
-            <% @totalus = @howmuch %>
-        <% elsif @total %>
-            <% @totalus = @total %>
-        <% end %>
-       <td>Order Total: <%= number_to_currency(@totalus, :unit => "€ ") %></td>
-       
-       
-      </tr>
-    <%# @overall = @total %>
-    
-</table>
+<% @overall = @linetotal %>
+<% @totalus = @linetotal %>
+
 Pay with PayPal
 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
 <input type="hidden" name="cmd" value="_xclick">
 <input type="hidden" name="business" value="jagonzacas@hotmail.com">
 <input type="hidden" name="item_name" value="Code World Order Number <%= @orderNum %>">
 <input type="hidden" name="currency_code" value="EUR">
-<input type="hidden" name="amount" value="<%= @totalus %>">
+<input type="hidden" name="amount" value="<%= @overall %>">
 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
 <input type="hidden" name="return" value="https://a36a883947b94457b231ac5604f5b6f9.vfs.cloud9.us-east-2.amazonaws.com/thanks/<%= @orderNum %>" >
 </form>
@@ -72,8 +38,7 @@ Pay with PayPal
       </div>
     <% end %>
     <label class="amount">
-        
-        
+
     </label>
     <%= hidden_field_tag 'amount', @totalus %>
     <%= hidden_field_tag 'orderid', @orderNum %>
@@ -82,11 +47,13 @@ Pay with PayPal
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-description="Payment"
-          data-amount="<%= @totalus * 100 %>"
+          data-amount="<%= @totalus%>"
           data-locale="auto"
-          data-image=""
           data-currency="eur">
   </script>
 <% end %>
 <br />
 <span class="button"><%= link_to 'Back', orders_path %></span>
+
+<% @@totalqty = 0 %>
+<% @@totalDisplayed = 0 %>

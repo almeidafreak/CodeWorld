@@ -51,6 +51,8 @@ Rails.application.routes.draw do
   
   get '/checkout/:price' => 'cart#clearOrder'
   
+  get '/key/finishOrder' => 'key#finishOrder', :as => :finishOrder
+  
   # Devise routes
   root :to => 'site#home'
   

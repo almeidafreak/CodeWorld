@@ -44,6 +44,14 @@ class StaticPagesController < ApplicationController
   end
   
   def paid
+    
+    #@actual = Order.find(params[:id])
+    
+    #unless @log.user_id == current_user.id
+      # flash[:error] = "unauthorized"
+      # redirect_to :index
+    #end
+    
     # redirect_to "/cart/clear"
     flash[:notice] = 'Transaction Complete'
     @order = Order.find(params[:id])

@@ -8,12 +8,8 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    #if params[:set_locale]
-      #redirect_to store_url(locale: params[:set_locale])
-    #else
-      @user = User.find(current_user.id)
-      @orders = @user.orders.all
-    #end
+    @user = User.find(current_user.id)
+    @orders = @user.orders.all
   end
 
   # GET /orders/1
@@ -24,6 +20,7 @@ class OrdersController < ApplicationController
     @orders = @user.orders.all
     @orderitems = Orderitem.all
     @orderitems = Orderitem.where(order_id: params[:id])
+    @comodin = Order.last
   end
   
   # before_action :authenticate_user!, only: [:adminorders]

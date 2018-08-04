@@ -35,7 +35,7 @@ class CartController < ApplicationController
       @cart = session[:cart]
     else
       @cart = {}
-    end  
+    end
   end
   
   def remove
@@ -69,10 +69,20 @@ class CartController < ApplicationController
   end
   
   def clearOrder
+    
+    #if there is no total or orderitems redirect
+    
     @user = User.find(current_user.id)
-    @orders = Order.all
+    @orders = Order.where(user_id: current_user.id)
+    
     @orderitems = Orderitem.where(order_id: Order.last)
-    @order = @user.orders.build(:order_date => DateTime.now, :status => 'Pending')
+    
+    # Esto es como estaba antes
+    # @orderitems = Orderitem.where(order_id: Order.last)
+    
+    #@order = @user.orders.build(:order_date => DateTime.now, :status => 'Pending')
   end
+  
+  
 
 end
